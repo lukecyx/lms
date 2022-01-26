@@ -1,23 +1,24 @@
 import os
 
 from config.settings.base import *  # noqa.
+from config.settings.get_env_variable import get_env_var
 
 
-ALLOWED_HOSTS = [os.environ["ALLOWED_HOSTS"]]
+ALLOWED_HOSTS = get_env_var("ALLOWED_HOSTS").split()
 
 DATABASES = {
     "default": {
-        "ENGINE": os.environ.get("DB_ENGINE"),
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "DB_PORT": os.environ.get("DB_PORT"),
+        "ENGINE": get_env_var("DB_ENGINE"),
+        "NAME": get_env_var("DB_NAME"),
+        "USER": get_env_var("DB_USER"),
+        "PASSWORD": get_env_var("DB_PASSWORD"),
+        "HOST": get_env_var("DB_HOST"),
+        "DB_PORT": get_env_var("DB_PORT"),
     },
 }
-DEBUG = bool(os.environ["DEBUG"])
+DEBUG = bool(get_env_var("DEBUG"))
 
-SECRET_KEY = os.environ["SECRET_KEY"]
+SECRET_KEY = get_env_var("SECRET_KEY")
 
 LOGGING = {
     "version": 1,

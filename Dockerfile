@@ -4,6 +4,9 @@ FROM python:3.10-bullseye
 # Python.
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV TERM=xterm-256color
+
+RUN apt-get update && apt-get -y dist-upgrade && apt install -y grc
 
 
 # Set up app.

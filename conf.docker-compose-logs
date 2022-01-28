@@ -1,0 +1,38 @@
+# General.
+regexp=(\S.*)(?!NAME)(\S+)\s+(\S+)\s+(\S+).*
+colours=bold yellow
+======
+# Timestamps.
+regexp=\[(\d{4}-\d{2}-\d{2}\s\d{2}:\d{2}:\d{2}\s.\d{4})\]
+colours=green
+======
+# Running
+regexp=\sRunning\s
+colours=bold green
+======
+ Traceback
+regexp=Traceback.*
+colours=bold red
+======
+regexp=(\S.*)Error.*$
+colors=bold red
+======
+# Stopped
+regexp=\sStopped\s
+colours=bold red
+======
+# Error
+regexp=\sError\s
+colours=red
+======
+# Info
+regexp=\[(INFO)\]
+colours=green
+======
+# Info detail
+regexp=(?<=INFO] ).*
+colours=magenta
+======
+# IP addrs
+regexp=(?:[0-9]{1,3}\.){3}[0-9]{1,3}:\d{5}
+color=yellow

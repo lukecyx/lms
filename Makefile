@@ -10,7 +10,7 @@ help: ## Show this screen
 
 ##@ Server commands
 build: ## Build all containers
-	docker-compose build
+	@docker-compose build
 
 setup: ## First time setup
 	cp --no-clobber ./env.sample .env
@@ -19,7 +19,7 @@ runserver: ## Runs the server [flags]
 	 @USER=$(HOST_USER) docker-compose up $(flags)
 
 down: ## Take down server [flags]
-	docker-compose down $(flags)
+	@docker-compose down $(flags)
 
 logs: ## Follow container logs [flags] <container>
 	@docker-compose logs $(flags) $(container) | grcat conf.docker-compose-logs
@@ -27,16 +27,16 @@ logs: ## Follow container logs [flags] <container>
 
 ##@ Django comamnds
 makemigrations: ## Make migrations [app]
-	@USER=$(HOST_USER) docker-compose run web python ./manage.py makemigrations $(app)
+	@USER=$(HOST_USER) docker-compose exec web python manage.py makemigrations $(app)
 
 checkmigrations: ## Check migrations [app]
-	@USER=$(HOST_USER) docker-compose run web python ./manage.py makemigrations --check --dry-run $(app)
+	@USER=$(HOST_USER) docker-compose exec web python manage.py makemigrations --check --dry-run $(app)
 
 showmigrations: ## Show migrations [app]
-	@USER=$(HOST_USER) docker-compose run web python ./manage.py showmigrations $(app)
+	@USER=$(HOST_USER) docker-compose exec web python manage.py showmigrations $(app)
 
 migrate: ## Migrate [app]
-	@USER=$(HOST_USER) docker-compose run web python ./manage.py migrate $(app)
+	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app)
 
 
 ##@ Testing

@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-def get_env_var(var_name) -> Any:
+def get_env_var(var_name: str) -> Any:
     """Get envronment var or raise helpful exception.
 
     :param var_name: Name of environment variable to get.

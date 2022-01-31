@@ -36,7 +36,7 @@ showmigrations: ## Show migrations [app]
 	@USER=$(HOST_USER) docker-compose exec web python manage.py showmigrations $(app)
 
 migrate: ## Migrate [app]
-	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) | grcat conf.docker-compose-logs
+	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) | grcat conf.sql
 
 
 ##@ Testing

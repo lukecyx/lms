@@ -2,6 +2,7 @@ import os
 from typing import Any
 
 from django.core.exceptions import ImproperlyConfigured
+
 from dotenv import load_dotenv
 
 load_dotenv()

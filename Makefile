@@ -41,7 +41,7 @@ migrate: ## Migrate [app]
 
 ##@ Testing
 pytest: ## Run pytest
-	@poetry run pytest
+	@USER=$(HOST_USER) docker-compose exec web poetry run pytest
 
 
 ##@ Tooling
@@ -55,7 +55,7 @@ black_format: ## Run black format
 	@poetry run black config apps
 
 flake8: ## Run flake8
-	@poetry run flake8config apps
+	@poetry run flake8 config apps
 
 isort: ## Run isort check
 	@poetry run isort --jobs 4 --check config apps
@@ -64,7 +64,7 @@ isort_format: ## Run isort format
 	@poetry run isort --jobs 4 config apps
 
 check_all: ## Run all checks
-	@make mypy black flake8 isort
+	make -k mypy black isort flake8
 
 format_all: ## Run all formatters
 	@make isort_format black_format

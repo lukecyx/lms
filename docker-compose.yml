@@ -10,6 +10,8 @@ services:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
+    ports:
+      - "6543:5432"
     env_file:
       - .env
   web:
@@ -17,7 +19,6 @@ services:
     container_name: web
     image: lms
     command: gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --reload --bind 0.0.0.0:8000
-
     volumes:
       - .:/app
       - static_volume:/app/static

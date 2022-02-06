@@ -26,8 +26,8 @@ logs: ## Follow container logs [flags] <container>
 
 
 ##@ Django comamnds
-makemigrations: ## Make migrations [app]
-	@USER=$(HOST_USER) docker-compose exec web python manage.py makemigrations $(app)
+makemigrations: ## Make migrations [app] [flags]
+	@USER=$(HOST_USER) docker-compose exec web python manage.py makemigrations $(app) $(flags)
 
 checkmigrations: ## Check migrations [app]
 	@USER=$(HOST_USER) docker-compose exec web python manage.py makemigrations --check --dry-run $(app)
@@ -35,8 +35,8 @@ checkmigrations: ## Check migrations [app]
 showmigrations: ## Show migrations [app]
 	@USER=$(HOST_USER) docker-compose exec web python manage.py showmigrations $(app)
 
-migrate: ## Migrate [app]
-	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) | grcat conf.sql
+migrate: ## Migrate [app] [number]
+	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) $(number) | grcat conf.sql
 
 
 ##@ Testing

@@ -1,6 +1,6 @@
 from typing import Any, Optional
 
-from apps.users.models import LmsUser
+from users.models import LmsUser
 
 import pytest
 

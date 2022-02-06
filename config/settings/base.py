@@ -13,6 +13,8 @@ INSTALLED_APPS = [
     # Custom.
     "apps.users",
     "apps.core",
+    "users",
+    "core",
 ]
 
 MIDDLEWARE = [

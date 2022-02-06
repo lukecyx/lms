@@ -1,4 +1,4 @@
-from apps.users.tests.helpers import TestUserHelpers
+from users.tests.helpers import TestUserHelpers
 
 from django.core.exceptions import ValidationError
 

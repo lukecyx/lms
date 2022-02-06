@@ -1,6 +1,6 @@
 import datetime
 
-from apps.users.tests.helpers import TestUserHelpers
+from users.tests.helpers import TestUserHelpers
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -32,7 +32,7 @@ class TestUserModel:
     @pytest.mark.django_db
     def test_create_staff_user(self):
         kwargs = {"is_staff": True}
-        staff_user = User.foo_objects.create_user(
+        staff_user = User.objects.create_user(
             email="staff@user.com", password="SecretPassword", **kwargs
         )
 

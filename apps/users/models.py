@@ -1,6 +1,9 @@
 from apps.core.models import TimestampedModel
 from apps.users.managers import UserManager
-from apps.users.validators import validate_unique_username, validate_username_valid_characters_only
+from apps.users.validators import (
+    validate_unique_username,
+    validate_username_valid_characters_only,
+)
 
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models

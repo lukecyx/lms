@@ -40,4 +40,6 @@ django_settings_module = "config.settings.local"
 [tool.isort]
 profile = "hug"
 known_django = "django"
+line_length = 88
+wrap_length = 88
 sections = ["FUTURE", "STDLIB", "FIRSTPARTY", "DJANGO", "THIRDPARTY", "LOCALFOLDER"]

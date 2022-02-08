@@ -18,7 +18,8 @@ services:
     build: .
     container_name: web
     image: lms
-    command: gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --reload --bind 0.0.0.0:8000
+    # command: gunicorn config.asgi:application -k uvicorn.workers.UvicornWorker --reload --bind 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --reload --bind 0.0.0.0:8000
     volumes:
       - .:/app
       - static_volume:/app/static

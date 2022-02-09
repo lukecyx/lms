@@ -1,4 +1,4 @@
-from users.tests.helpers import TestUserHelpers
+from users.tests.helpers import create_standard_user
 
 from django.core.exceptions import ValidationError
 
@@ -9,14 +9,14 @@ class TestUserModelValidators:
     @pytest.mark.django_db
     def test_invalid_characters_in_username(self):
         with pytest.raises(ValidationError):
-            TestUserHelpers.create_standard_user(username="not@llowed")
+            create_standard_user(username="not@llowed")
 
     @pytest.mark.django_db
     def test_unique_username_validator(self):
-        TestUserHelpers.create_standard_user(username="Talos")
+        create_standard_user(username="Talos")
 
         with pytest.raises(ValidationError):
-            TestUserHelpers.create_standard_user(username="Talos")
+            create_standard_user(username="Talos")
 
         with pytest.raises(ValidationError):
-            TestUserHelpers.create_standard_user(username="talos")
+            create_standard_user(username="talos")

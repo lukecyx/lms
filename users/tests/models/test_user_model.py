@@ -1,6 +1,6 @@
 import datetime
 
-from users.tests.helpers import TestUserHelpers
+from users.tests.helpers import create_standard_user
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
@@ -16,7 +16,7 @@ User = get_user_model()
 class TestUserModel:
     @pytest.mark.django_db
     def test_create_standard_user(self):
-        user = TestUserHelpers.create_standard_user()
+        user = create_standard_user()
 
         assert User.objects.filter(email=user.email).exists() is True
         assert user.is_staff is False
@@ -50,7 +50,7 @@ class TestUserModel:
     @pytest.mark.django_db
     def test_email_required(self):
         with pytest.raises(ValueError):
-            TestUserHelpers.create_standard_user(email="")
+            create_standard_user(email="")
 
     @pytest.mark.django_db
     def test_create_super_user(self):
@@ -72,12 +72,12 @@ class TestUserModel:
 
     @pytest.mark.django_db
     def test_email_already_exists(self):
-        user1 = TestUserHelpers.create_standard_user(**{"username": "user1"})
+        user1 = create_standard_user(**{"username": "user1"})
 
         assert User.objects.filter(username=user1.username).exists() is True
 
         with pytest.raises(ValidationError):
             with transaction.atomic():
-                _ = TestUserHelpers.create_standard_user(**{"username": "user2"})
+                _ = create_standard_user(**{"username": "user2"})
 
         assert User.objects.filter(username="user2").exists() is False

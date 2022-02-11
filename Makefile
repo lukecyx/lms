@@ -22,7 +22,7 @@ down: ## Take down server [flags]
 	@docker-compose down $(flags)
 
 logs: ## Follow container logs [flags] <container>
-	@docker-compose logs $(flags) $(container) | grcat conf.docker-compose-logs
+	@docker-compose logs $(flags) $(container) | grcat ./config/grc-confs/conf.docker-compose-logs
 
 
 ##@ Django comamnds
@@ -36,7 +36,7 @@ showmigrations: ## Show migrations [app]
 	@USER=$(HOST_USER) docker-compose exec web python manage.py showmigrations $(app)
 
 migrate: ## Migrate [app] [number]
-	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) $(number) | grcat conf.sql
+	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) $(number) | grcat ./config/grc-confs/conf.sql
 
 
 ##@ Testing

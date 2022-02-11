@@ -1,6 +1,6 @@
-from core.models import TimestampedModel
-from users.managers import UserManager
-from users.validators import (
+from src.core.models import TimestampedModel
+from src.users.managers import UserManager
+from src.users.validators import (
     validate_unique_username,
     validate_username_valid_characters_only,
 )

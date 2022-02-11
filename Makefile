@@ -40,8 +40,8 @@ migrate: ## Migrate [app] [number]
 
 
 ##@ Testing
-pytest: ## Run pytest
-	@USER=$(HOST_USER) docker-compose exec web poetry run pytest
+pytest: ## Run pytest [path]
+	@USER=$(HOST_USER) docker-compose exec web poetry run pytest $(path)
 
 
 ##@ Tooling

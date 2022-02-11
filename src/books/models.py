@@ -1,4 +1,4 @@
-from core.models import TimestampedModel
+from src.core.models import TimestampedModel
 
 from django.db import models
 

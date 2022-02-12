@@ -11,11 +11,13 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     ports:
-      - "5432:5432"
+      - "6543:5432"
     env_file:
       - .env
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     container_name: web
     image: lms
     command: gunicorn config.wsgi:application --reload --bind 0.0.0.0:8000
@@ -23,14 +25,15 @@ services:
       - .:/app
       - static_volume:/app/static
       - media_volume:/app/media
-    ports:
-      - "8080:8080"
+    expose:
+      - 8000
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     depends_on:
       - db
+    user: ${USER}
     env_file:
       - .env
 

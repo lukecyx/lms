@@ -1,4 +1,4 @@
-from users.tests.helpers import create_standard_user
+from src.users.tests.helpers import create_standard_user
 
 from django.core.exceptions import ValidationError
 

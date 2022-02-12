@@ -3,9 +3,11 @@ from typing import Any
 
 from django.core.exceptions import ImproperlyConfigured
 
-from dotenv import load_dotenv
-
-load_dotenv()
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except (ModuleNotFoundError, ImportError):
+    pass
 
 
 def get_env_var(var_name: str) -> Any:

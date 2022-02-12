@@ -15,7 +15,9 @@ services:
     env_file:
       - .env
   web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile.local
     container_name: web
     image: lms
     command: gunicorn config.wsgi:application --reload --bind 0.0.0.0:8000

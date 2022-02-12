@@ -1,7 +1,7 @@
 from config.settings.base import *
 from config.settings.get_env_variable import get_env_var
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = get_env_var("ALLOWED_HOSTS").split()
 DATABASES = {
     "default": {

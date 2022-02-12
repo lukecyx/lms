@@ -2,7 +2,7 @@ import csv
 import itertools
 from typing import TypedDict
 
-from helpers.migrations.csv_import import transform
+from src.helpers.migrations.csv_import import transform
 
 from django.conf import settings
 from django.db import migrations

@@ -3,11 +3,7 @@ from typing import Any
 
 from django.core.exceptions import ImproperlyConfigured
 
-try:
-    from dotenv import load_dotenv
-    load_dotenv()
-except (ModuleNotFoundError, ImportError):
-    pass
+import dotenv
 
 
 def get_env_var(var_name: str) -> Any:
@@ -17,9 +13,11 @@ def get_env_var(var_name: str) -> Any:
     :raises: ImproperlyConfigured if environment variable not found.
     """
 
+    dotenv.load_dotenv()
+
     try:
         return os.environ[var_name]
     except KeyError:
-        error_msg = f"Environment variable: {var_name} not set"
+        error_msg = f"Environment variable {var_name} not set"
 
         raise ImproperlyConfigured(error_msg)

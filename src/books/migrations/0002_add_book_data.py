@@ -27,7 +27,7 @@ class BookRecord(TypedDict):
 
 
 def get_csv_rows():
-    with open(settings.BASE_DIR / "data_files/books.csv") as csvfile:
+    with open(settings.BASE_DIR / "src/data_files/books.csv") as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
             yield transform(row, BookRecord)

@@ -18,5 +18,5 @@ class Book(TimestampedModel):
     image_url = models.CharField(max_length=255)
     small_image_url = models.CharField(max_length=255)
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         return f"Book(title={self.title} isbn={self.isbn})"

@@ -81,3 +81,12 @@ class TestUserModel:
                 _ = create_standard_user(**{"username": "user2"})
 
         assert User.objects.filter(username="user2").exists() is False
+
+    @pytest.mark.django_db
+    def test_repr(self):
+        user = create_standard_user(first_name="dead", last_name="beef")
+
+        assert str(user) == f"User(full_name={user.full_name}, email={user.email})"
+        assert repr(user) == (
+            f"<LmsUser: User(full_name={user.full_name}, email={user.email})>"
+        )

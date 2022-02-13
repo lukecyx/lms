@@ -49,22 +49,22 @@ pytest: ## Run pytest [path]
 
 ##@ Tooling
 mypy: ## Run mypy
-	@poetry run mypy config apps
+	@poetry run mypy config src
 
 black: ## Run black check
-	@poetry run black --check config apps
+	@poetry run black --check config src
 
 black_format: ## Run black format
-	@poetry run black config apps
+	@poetry run black config src
 
 flake8: ## Run flake8
-	@poetry run flake8 config apps
+	@poetry run flake8 config src
 
 isort: ## Run isort check
-	@poetry run isort --jobs 4 --check config apps
+	@poetry run isort --jobs 4 --check config src
 
 isort_format: ## Run isort format
-	@poetry run isort --jobs 4 config apps
+	@poetry run isort --jobs 4 config src
 
 check_all: ## Run all checks
 	make -k mypy black isort flake8

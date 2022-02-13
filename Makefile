@@ -24,6 +24,9 @@ down: ## Take down server [flags]
 logs: ## Follow container logs [flags] <container>
 	@docker-compose logs $(flags) $(container) | grcat ./config/grc-confs/conf.docker-compose-logs
 
+rebuild: ## Rebuilds contianer [[docker-compose] flags]
+	make down && make runserver $(flags)
+
 generate_requirements_file: ## Required for digitalocean deploy
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 

@@ -38,7 +38,7 @@ class LmsUser(AbstractBaseUser, PermissionsMixin, TimestampedModel):
         verbose_name = _("user")
         verbose_name_plural = _("users")
 
-    def __repr__(self) -> str:
+    def __str__(self) -> str:
         return f"User(full_name={self.full_name}, email={self.email})"
 
     @property

@@ -1,0 +1,89 @@
+# The name of the action
+# name: Tests
+# # When the action is triggered
+# on:
+#   push:
+#     branches:
+#       - master
+#   pull_request:
+#     branches:
+#       - master
+#
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#
+#       - name: Set up Python 3.10
+#         uses: actions/setup-python@v2
+#         with:
+#           python-version: "3.10"
+#
+#       - name: Install Poetry
+#         uses: snok/install-poetry@v1
+#
+#       - name: Install Dependencies using Poetry
+#         run: poetry install
+#
+#       - name: Test with pytest
+#         env:
+          # ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          # SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          # DEBUG: ${{ secrets.DEBUG }}
+          # DB_ENGINE: ${{ secrets.DB_ENGINE }}
+          # DB_NAME: ${{ secrets.DB_NAME }}
+          # DB_USER: ${{ secrets.DB_USER }}
+          # DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          # DB_HOST: ${{ secrets.DB_HOST }}
+          # DB_PORT: ${{ secrets.DB_PORT }}
+          # DATABASE: ${{ secrets.DATABASE }}
+          # DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+#         working-directory: .
+#         run: poetry run pytest
+name: Docker build and test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+
+  build:
+   env:
+     ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+     SECRET_KEY: ${{ secrets.SECRET_KEY }}
+     DEBUG: ${{ secrets.DEBUG }}
+     DB_ENGINE: ${{ secrets.DB_ENGINE }}
+     DB_NAME: ${{ secrets.DB_NAME }}
+     DB_USER: ${{ secrets.DB_USER }}
+     DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+     DB_HOST: ${{ secrets.DB_HOST }}
+     DB_PORT: ${{ secrets.DB_PORT }}
+     DATABASE: ${{ secrets.DATABASE }}
+     DJANGO_SETTINGS_MODULE: ${{ secrets.DJANGO_SETTINGS_MODULE }}
+   runs-on: ubuntu-latest
+
+
+   steps:
+     - uses: actions/checkout@v2
+     - name: Build Docker image
+       run: docker build -t lms .
+     - name: Run tests inside the container
+       run: |
+         docker run -e ALLOWED_HOSTS=$ALLOWED_HOSTS -e DB_ENGINE=$DB_ENGINE -e DB_NAME=$DB_NAME -e DB_USER=$DB_USER -e DB_HOST=$DB_HOST -e DB_PASSWORD=$DB_PASSWORD -e DB_PORT=$DB_PORT -e DATABASE=$DATABASE -e DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE -e DEBUG=$DEBUG -e SECRET_KEY=$SECRET_KEY lms poetry run pytest
+
+           # -e SECRET_KEY=$SECRET_KEY \
+           # -e DEBUG=$DEBUG \
+           # -e DB_ENGINE=$DB_ENGINE \
+           # -e DB_NAME=$DB_NAME \
+           # -e DB_USER=$DB_USER \
+           # -e DB_PASSWORD=$DB_PASSWORD \
+           # -e DB_HOST=$DB_HOST \
+           # -e DB_PORT = $DB_PORT \
+           # -e DATABASE=$DATABASE\
+           # -e DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE \

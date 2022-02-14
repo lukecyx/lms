@@ -44,6 +44,9 @@ showmigrations: ## Show migrations [app]
 migrate: ## Migrate [app] [number]
 	@USER=$(HOST_USER) docker-compose exec web python manage.py migrate $(app) $(number) | grcat ./config/grc-confs/conf.sql
 
+run_command: ## Run a management command [command]
+	@USER=$(HOST_USER) docker-compose exec web python manage.py $(command) | grcat ./config/grc-confs/conf.sql
+
 
 ##@ Testing
 pytest: ## Run pytest [path]

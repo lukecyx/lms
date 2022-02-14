@@ -3,4 +3,3 @@ omit=
     */site-packages/*
     */tests/*
     */migrations/*
-    */__init__.py/*

@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-from src.helpers.migrations.csv_import import transform
+from src.helpers.commands.csv_import import transform
 
 
 class BookRecord(TypedDict):

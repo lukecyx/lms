@@ -1,8 +1,8 @@
 from src.users.tests.helpers import create_standard_user
 
-from django.core.exceptions import ValidationError
-
 import pytest
+
+from django.core.exceptions import ValidationError
 
 
 class TestUserModelValidators:

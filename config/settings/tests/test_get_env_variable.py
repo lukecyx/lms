@@ -1,8 +1,8 @@
 from config.settings.get_env_variable import get_env_var
 
-from django.core.exceptions import ImproperlyConfigured
-
 import pytest
+
+from django.core.exceptions import ImproperlyConfigured
 
 
 @pytest.fixture()

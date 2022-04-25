@@ -1,9 +1,9 @@
 import os
 from typing import Any
 
-from django.core.exceptions import ImproperlyConfigured
-
 import dotenv
+
+from django.core.exceptions import ImproperlyConfigured
 
 
 def get_env_var(var_name: str) -> Any:

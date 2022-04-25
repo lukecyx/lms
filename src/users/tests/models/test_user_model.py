@@ -2,12 +2,12 @@ import datetime
 
 from src.users.tests.helpers import create_standard_user
 
+import pytest
+from freezegun import freeze_time
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.db import transaction
-
-import pytest
-from freezegun import freeze_time
 
 User = get_user_model()
 

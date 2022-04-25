@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     "src.users",
     "src.core",
     "src.books",
+    "ninja",
 ]
 
 MIDDLEWARE = [

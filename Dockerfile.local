@@ -12,6 +12,7 @@ RUN apt-get update && apt-get -y dist-upgrade && apt install -y grc
 # Set up app.
 RUN mkdir /app
 RUN mkdir -p /app/web/static
+RUN mkdir -p /app/web/staticfiles
 RUN mkdir -p /app/web/media
 
 WORKDIR /app/

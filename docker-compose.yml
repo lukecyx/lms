@@ -23,7 +23,7 @@ services:
     command: gunicorn config.wsgi:application --reload --bind 0.0.0.0:8000
     volumes:
       - .:/app
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
       - media_volume:/app/media
     expose:
       - 8000
@@ -41,7 +41,7 @@ services:
     build: ./nginx
     container_name: nginx
     volumes:
-      - static_volume:/app/static
+      - static_volume:/app/staticfiles
       - media_volume:/app/media
     ports:
       - 80:80

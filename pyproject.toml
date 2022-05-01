@@ -43,4 +43,12 @@ profile = "hug"
 known_django = "django"
 line_length = 88
 wrap_length = 88
-sections = ["FUTURE", "STDLIB", "FIRSTPARTY", "THIRDPARTY", "DJANGO", "LOCALFOLDER"]
+sections = ["FUTURE", "STDLIB", "FIRSTPARTY", "THIRDPARTY", "DJANGO", "LOCALFOLDER",]
+
+[tool.coverage.run]
+omit=[
+    "*/site-packages/*",
+    "*/tests/*",
+    "*/migrations/*",
+    "**/__init__.py",
+]

@@ -52,6 +52,9 @@ run_command: ## Run a management command [command]
 pytest: ## Run pytest [path]
 	@USER=$(HOST_USER) docker-compose exec web poetry run pytest $(path)
 
+coverage: ## Run coverage [args]
+	@USER=$(HOST_USER) docker-compose exec web coverage run -m pytest $(args)
+
 
 ##@ Tooling
 mypy: ## Run mypy
